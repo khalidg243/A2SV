@@ -1,0 +1,15 @@
+class Solution:
+    def isCovered(self, ranges: List[List[int]], left: int, right: int) -> bool:
+        
+        for i in range (left,right+1):
+            is_covered = False
+            x=0
+            while x in range(len(ranges)):
+                if ranges[x][0]<=i<=ranges[x][1]:
+                    is_covered = True
+                    break
+                x+=1
+                
+            if not is_covered:
+                return False
+        return True
