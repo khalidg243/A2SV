@@ -1,0 +1,17 @@
+class Solution:
+    def findWinners(self, matches: List[List[int]]) -> List[List[int]]:
+        wins={}
+        loses={}
+        for winner,loser in matches:
+            wins[winner]=wins.get(winner,0)+1
+            loses[loser]=loses.get(loser,0)+1
+        one_loss=[]
+        for loser,num_of_loses in loses.items():
+            if num_of_loses == 1:
+                one_loss.append(loser)
+        no_loss=[]
+        for winner in wins:
+            if winner not in loses:
+                no_loss.append(winner)
+        
+        return(sorted(no_loss),sorted(one_loss))
