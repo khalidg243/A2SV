@@ -1,0 +1,7 @@
+class Solution:
+    def smallerNumbersThanCurrent(self, nums: List[int]) -> List[int]:
+        numbers=sorted(nums)
+        res=[]
+        for num in nums:
+            res.append(numbers.index(num))
+        return res
