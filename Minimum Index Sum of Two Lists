@@ -1,0 +1,16 @@
+class Solution:
+    def findRestaurant(self, list1: List[str], list2: List[str]) -> List[str]:
+        common_str={}
+        for index , string in enumerate(list1):
+            if string in list2:
+                common_str[string]= index + list2.index(string)
+        common_str=sorted(common_str.items(),key = lambda x : x[1])
+        smallest=common_str[0][1]
+        res=[]
+        for key, value in common_str:
+            if value==smallest:
+                res.append(key)
+            else:
+                break
+        return res
+        
