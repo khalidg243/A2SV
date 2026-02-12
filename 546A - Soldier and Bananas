@@ -1,0 +1,8 @@
+cost, amount_available, number_wanted = map(int, input().split())
+total_cost=0
+for i in range(1, number_wanted+1):
+    total_cost+=cost*i
+if total_cost>amount_available:
+    print(total_cost-amount_available)
+else:
+    print(0)
