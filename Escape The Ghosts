@@ -1,0 +1,12 @@
+class Solution:
+    def escapeGhosts(self, ghosts: List[List[int]], target: List[int]) -> bool:
+        my_distance=abs(target[0])+abs(target[1])
+        # print(my_distance)
+        ghost_distances=[]
+        for ghost in ghosts:
+            ghost_distances.append(abs(target[0]-ghost[0])+abs(target[1]-ghost[1]))
+            # print(ghost_distances)
+        for dist in ghost_distances:
+            if dist <= my_distance:
+                return False
+        return True
