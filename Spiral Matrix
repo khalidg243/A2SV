@@ -1,0 +1,45 @@
+class Solution:
+    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
+        right = len(matrix[0])
+        left = 0
+        up = 0
+        down = len(matrix)
+
+        spiral=[]
+        while len(spiral)<(len(matrix)*len(matrix[0])):
+            for i in range(left,right):
+               try: 
+                spiral.append(matrix[up][i])
+               except IndexError:
+                break 
+            up+=1
+            
+            if len(spiral)>=(len(matrix)*len(matrix[0])):
+                break
+            for i in range(up,down):
+               try: 
+                spiral.append(matrix[i][right-1])
+               except IndexError:
+                break  
+            right-=1
+            if len(spiral)>=(len(matrix)*len(matrix[0])):
+                break
+
+            for i in range(right-1,left-1,-1):
+               try: 
+                spiral.append(matrix[down-1][i])
+               except IndexError:
+                break 
+            down-=1
+            if len(spiral)>=(len(matrix)*len(matrix[0])):
+                break
+
+            for i in range(down-1,up-1,-1):
+               try: 
+                spiral.append(matrix[i][left])
+               except IndexError:
+                break 
+            left+=1
+            print(spiral)
+        
+        return spiral
