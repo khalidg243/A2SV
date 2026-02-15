@@ -1,0 +1,11 @@
+class Solution:
+    def matrixSum(self, nums: List[List[int]]) -> int:
+        for arr in nums:
+            arr.sort()
+        total=0
+        for i in range (len(nums[0])):
+            max_seen=0
+            for row in nums:
+                max_seen=max(row[i],max_seen)
+            total+=max_seen
+        return total
