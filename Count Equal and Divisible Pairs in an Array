@@ -1,0 +1,15 @@
+class Solution:
+    def countPairs(self, nums: List[int], k: int) -> int:
+        Dictionary={}
+        for indx, value in enumerate(nums):
+            Dictionary[value] = Dictionary.get(value,[])
+            Dictionary[value].append(indx)
+        cnt=0
+        for value in Dictionary:
+            element_frequency=len(Dictionary[value])
+            if element_frequency>1:
+                for i in range(element_frequency-1):
+                    for j in range(i+1,element_frequency):
+                        if (Dictionary[value][i]*Dictionary[value][j])%k == 0:
+                            cnt+=1
+        return cnt 
