@@ -1,0 +1,13 @@
+arr = []
+index_of_1=[]
+for i in range(5):
+    row = list(map(int, input().split()))
+    if 1 in row:
+        index_of_1=[i,row.index(1)]
+        break
+    arr.append(row)
+
+res=abs(2-index_of_1[0])+abs(2-index_of_1[1])
+print(res)
+
+
