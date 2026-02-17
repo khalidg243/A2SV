@@ -1,0 +1,16 @@
+class Solution:
+    def findDiagonalOrder(self, mat: List[List[int]]) -> List[int]:
+        diagonals={}
+        res=[]
+        for row_idx in range(len(mat)):
+            for col_idx in range(len(mat[0])):
+                diagonals[row_idx+col_idx]=diagonals.get(row_idx+col_idx,[])
+                diagonals[row_idx+col_idx].append(mat[row_idx][col_idx])
+        for num in diagonals:
+            if num % 2 == 0:
+                for i in range(len(diagonals[num])-1,-1,-1):
+                    res.append(diagonals[num][i])
+            else: 
+                for i in range(len(diagonals[num])):
+                    res.append(diagonals[num][i])
+        return res
