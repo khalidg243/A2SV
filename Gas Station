@@ -1,0 +1,30 @@
+class Solution:
+    def canCompleteCircuit(self, gas: List[int], cost: List[int]) -> int:
+        i=0
+        while i < (len(gas)):
+            j=i+1
+            e=0
+            remaining_gas= gas[i]-cost[i]
+            if remaining_gas>=0:
+                while j < (len(gas)):
+                    remaining_gas+=(gas[j]-cost[j])
+                    if remaining_gas<0:
+                        i=j+1
+                        break
+                    else:
+                        j+=1
+            else:
+                i+=1
+                continue
+            if remaining_gas>=0:
+                while e <= i:
+                    remaining_gas+=(gas[e]-cost[e])
+                    if remaining_gas<0:
+                        return -1
+                    else:
+                        e+=1
+                return i
+            
+        return -1
+        
+        
