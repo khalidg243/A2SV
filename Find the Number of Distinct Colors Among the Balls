@@ -1,0 +1,23 @@
+class Solution:
+    def queryResults(self, limit: int, queries: List[List[int]]) -> List[int]:
+        ball_color={}
+        color_count= defaultdict(int)
+        distinct=0
+        res=[]
+
+        for ball , color in queries:    
+
+            if ball in ball_color:
+                old = ball_color[ball]
+                color_count[old]-=1
+                if color_count[old] == 0:
+                    distinct-=1
+            
+            ball_color[ball] = color
+            if color_count[color] == 0:
+                distinct +=1
+            color_count[color] += 1
+
+            res.append(distinct)
+        
+        return res
