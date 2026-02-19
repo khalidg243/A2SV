@@ -1,0 +1,10 @@
+class Solution:
+    def findTheWinner(self, n: int, k: int) -> int:
+        arr=[]
+        for i in range(1 , n + 1):
+            arr.append(i) 
+        starting_position=0
+        while len(arr) > 1:
+            starting_position = (starting_position + (k-1))%len(arr)
+            arr.pop(starting_position)
+        return arr[0]
