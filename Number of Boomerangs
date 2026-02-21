@@ -1,0 +1,23 @@
+class Solution:
+    def numberOfBoomerangs(self, points: List[List[int]]) -> int:
+        
+        n = len(points)
+        ans = 0
+
+        for i in range(n):
+            cnt = {}
+
+            xi , yi = points[i]
+            for j in range(n):
+                if i == j:
+                    continue
+                xj , yj = points[j]
+                dx = xi - xj
+                dy = yi - yj
+                diff = (dx**2) + (dy**2)
+                cnt[diff] = cnt.get(diff,0) + 1
+
+            for num in cnt.values():
+                    ans += (num * (num - 1))
+        
+        return ans
