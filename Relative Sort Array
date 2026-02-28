@@ -1,0 +1,17 @@
+class Solution:
+    def relativeSortArray(self, arr1: List[int], arr2: List[int]) -> List[int]:
+        dictionary = {}
+        res=[]
+
+        for num in arr1:
+            dictionary[num] = dictionary.get(num,0) + 1 
+        
+        for num in arr2:
+            res.extend([num]*dictionary[num])
+        
+        remaining = sorted(set(arr1) - set(arr2))
+
+        for num in remaining:
+            res.extend([num]*dictionary[num])
+        
+        return res
