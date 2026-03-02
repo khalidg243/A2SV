@@ -1,0 +1,12 @@
+class Solution:
+    def frequencySort(self, s: str) -> str:
+        dictionary = {}
+        for char in s:
+            dictionary[char] = dictionary.get(char, 0) + 1
+        
+        res = ""
+
+        for char in sorted(dictionary , key = lambda x: dictionary[x] , reverse = True):
+            res += (char * dictionary[char])
+        
+        return res
