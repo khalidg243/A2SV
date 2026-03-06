@@ -1,0 +1,22 @@
+arr1_length , arr2_length = map(int,input().split())
+
+arr1 = list(map(int,input().split()))
+arr2 = list(map(int,input().split()))
+
+i = j = 0
+res = []
+while i < arr1_length or j < arr2_length:
+    if i == arr1_length :
+        res.extend(arr2[j:])
+        break
+    elif j == arr2_length :
+        res.extend(arr1[i:])
+        break
+    elif arr1[i] < arr2[j]:
+        res.append(arr1[i])
+        i+=1
+    else:
+        res.append(arr2[j])
+        j+=1
+
+print(" ".join(map(str,res)))
