@@ -1,0 +1,24 @@
+class Solution:
+    def dividePlayers(self, skill: List[int]) -> int:
+        total_skill = sum(skill)
+        num_of_players = len(skill)
+        total = 0
+        num_of_grps = num_of_players/2
+
+        if total_skill % num_of_grps != 0 :
+            return -1
+        
+        skill.sort()
+
+        left = 0 
+        right = num_of_players - 1
+
+        while left < right :
+            if skill[left] + skill[right] != total_skill / num_of_grps:
+                return -1
+            
+            total += skill[left] * skill[right]
+            left += 1
+            right -= 1
+        
+        return total
