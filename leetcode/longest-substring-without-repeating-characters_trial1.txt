@@ -1,0 +1,19 @@
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        left = 0 
+        dictionary = {} 
+        sub_str = 0 
+        longest = 0 
+        for char in s:
+            dictionary[char] = dictionary.get(char, 0) + 1
+            sub_str += 1
+            if dictionary[char] > 1 :
+                while dictionary[char] > 1:
+                    dictionary[s[left]] -= 1
+                    left += 1
+                    if dictionary[s[left]] == 0:
+                        del dictionary[s[left]]
+                    sub_str -= 1
+            longest = max(longest, sub_str)
+        return longest
+                
