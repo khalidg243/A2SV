@@ -1,0 +1,23 @@
+class Solution:
+    def intervalIntersection(self, firstList: List[List[int]], secondList: List[List[int]]) -> List[List[int]]:
+        res = []
+        pointer_a = 0
+        pointer_b = 0
+
+        while pointer_a < len(firstList) and pointer_b < len(secondList):
+            print (firstList[pointer_a][0], secondList[pointer_b][0], firstList[pointer_a][1], secondList[pointer_b][1])
+            if firstList[pointer_a][1] >= secondList[pointer_b][0] and firstList[pointer_a][1] <= secondList[pointer_b][1]:
+                temp = [max(firstList[pointer_a][0],secondList[pointer_b][0]),min(firstList[pointer_a][1],secondList[pointer_b][1])]
+                res.append(temp)
+                pointer_a += 1
+            elif firstList[pointer_a][0] <= secondList[pointer_b][1] and firstList[pointer_a][1] >= secondList[pointer_b][1]:
+                temp = [max(firstList[pointer_a][0],secondList[pointer_b][0]),min(firstList[pointer_a][1],secondList[pointer_b][1])]
+                res.append(temp)
+                pointer_b += 1
+            else:
+                if firstList[pointer_a][1] < secondList[pointer_b][1]:
+                    pointer_a += 1
+                else:
+                    pointer_b += 1
+        
+        return res
