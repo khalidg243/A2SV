@@ -5,7 +5,6 @@ class Solution:
         pointer_b = 0
 
         while pointer_a < len(firstList) and pointer_b < len(secondList):
-            print (firstList[pointer_a][0], secondList[pointer_b][0], firstList[pointer_a][1], secondList[pointer_b][1])
             if firstList[pointer_a][1] >= secondList[pointer_b][0] and firstList[pointer_a][1] <= secondList[pointer_b][1]:
                 temp = [max(firstList[pointer_a][0],secondList[pointer_b][0]),min(firstList[pointer_a][1],secondList[pointer_b][1])]
                 res.append(temp)
