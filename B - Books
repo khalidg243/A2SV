@@ -1,0 +1,17 @@
+arr_len , mins = map(int, input().split())
+arr = list(map(int, input().split()))
+max_len = 0 
+left = 0 
+right = 0 
+num_sum = 0 
+while right < len(arr):
+    
+    num_sum += arr[right]
+    right += 1
+    while num_sum > mins :
+        num_sum -= arr[left]
+        left += 1
+    max_len = max(max_len,(right - left))
+
+
+print(max_len)
