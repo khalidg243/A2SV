@@ -1,0 +1,23 @@
+class Solution:
+    def threeSum(self, nums: list[int]) -> list[list[int]]:
+        res = []
+        nums.sort()
+        for staple in range(len(nums)-2):
+            if staple > 0 and nums[staple] == nums[staple - 1]:
+                continue
+            l = staple + 1
+            r = len(nums) - 1
+            while l < r :
+                target = nums[staple] + nums[l] + nums[r]
+                if target == 0:
+                    res.append([nums[staple], nums[l] , nums[r]])
+                    lv, rv = nums[l], nums[r]
+                    while l < r and nums[l] == lv:
+                        l += 1
+                    while l < r and nums[r] == rv:
+                        r -= 1
+                elif target > 0:
+                    r -= 1
+                else:
+                    l += 1
+        return res
