@@ -1,0 +1,18 @@
+class Solution:
+    def characterReplacement(self, s: str, k: int) -> int:
+        dictionary = {}
+        largest_cnt = 0 
+        left = 0
+        max_len = 0 
+        for right in range(len(s)):
+            dictionary[s[right]] = dictionary.get(s[right],0) + 1 
+            largest_cnt = max(largest_cnt , dictionary[s[right]])
+            while left < right and sum(dictionary.values()) - largest_cnt > k:
+                dictionary[s[left]] -= 1
+                if dictionary[s[left]] == 0:
+                    del dictionary[s[left]]
+                left += 1
+                largest_cnt = max(dictionary.values())
+            max_len = max(max_len , (right - left)+1)
+
+        return max_len
