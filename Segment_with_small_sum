@@ -1,0 +1,21 @@
+N , S = map(int, input().split())
+
+arr = list(map(int, input().split()))
+
+left = right = 0 
+longest = 0
+curr_sum = 0 
+temp = 0
+while right < N:
+    curr_sum += arr[right]
+    right += 1 
+    temp += 1
+    while curr_sum >= S:
+        curr_sum -= arr[left]
+        temp -= 1
+        left += 1
+    longest = max(longest , temp)
+        
+
+
+print(longest) 
