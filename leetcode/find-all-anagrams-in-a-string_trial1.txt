@@ -1,0 +1,21 @@
+class Solution:
+    def findAnagrams(self, s: str, p: str) -> List[int]:
+        dictionary = {}
+        dict_p = {}
+        res = []
+        for char in p:
+            dict_p[char] = dict_p.get(char, 0) + 1
+        left = 0
+        right = 0 
+        while right < len(s):
+            if sum(dictionary.values()) < len(p):
+                dictionary[s[right]] = dictionary.get(s[right], 0) + 1
+                right += 1
+            if sum(dictionary.values()) == len(p):
+                if dictionary == dict_p:
+                    res.append(left)
+                dictionary[s[left]] -= 1
+                if dictionary[s[left]] == 0:
+                    del dictionary[s[left]]
+                left += 1
+        return res
