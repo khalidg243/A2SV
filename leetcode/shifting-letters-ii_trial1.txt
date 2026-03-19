@@ -1,0 +1,26 @@
+class Solution:
+    def shiftingLetters(self, s: str, shifts: List[List[int]]) -> str:
+        alphabet_dict = {letter: idx for idx, letter in enumerate(string.ascii_lowercase)}
+        original = [alphabet_dict[ch] for ch in s]
+        diff = [0] * (len(s) + 1)
+        for shift in shifts:
+            if shift[2] == 0:
+                diff[shift[0]] -= 1
+                diff[shift[1]+1] += 1
+            else:
+                diff[shift[0]] += 1
+                diff[shift[1]+1] -= 1
+           
+        for i in range(1,len(diff)):
+            diff[i] += diff[i-1]
+        
+        alphabet_dict = list(alphabet_dict)
+        string_1 = ""
+        for i , x in enumerate(original):
+            diff[i] += x
+            string_1 += alphabet_dict[diff[i] % 26]
+        
+        return (string_1)
+           
+
+
