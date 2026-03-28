@@ -1,0 +1,12 @@
+class Solution:
+    def minimumRecolors(self, blocks: str, k: int) -> int:
+        min_operations = float(inf)
+        freq = {}
+        left = 0
+        for right, clr in enumerate(blocks):
+            freq[clr] = freq.get(clr, 0) + 1
+            if right >= k-1:
+                min_operations = min(min_operations, freq.get('W', 0))
+                freq[blocks[left]] -= 1
+                left += 1
+        return min_operations
