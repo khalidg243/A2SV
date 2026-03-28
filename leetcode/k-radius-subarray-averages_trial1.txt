@@ -1,0 +1,16 @@
+class Solution:
+    def getAverages(self, nums: List[int], k: int) -> List[int]:
+        if len(nums) < (2*k + 1):
+            return [-1] * len(nums)
+        left = 0 
+        temp = sum(nums[:(2*k + 1)])
+
+        res = [-1] * len(nums)
+        res[k] = temp // (2*k + 1)
+        for right in range(k+1,len(nums)-(k)):
+            temp -= nums[left]
+            temp += nums[right + k]
+            res[right] = temp // (2*k + 1)
+            left += 1
+        
+        return res
