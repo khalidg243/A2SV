@@ -1,0 +1,27 @@
+class Solution:
+    def checkInclusion(self, s1: str, s2: str) -> bool:
+        if len(s1) > len(s2):
+            return False
+        
+        freq = {}
+        for char in s1:
+            freq[char] = freq.get(char, 0) + 1
+        
+        n = len(s1)                           
+        temp = {}
+
+        for char in s2[:n]:
+            temp[char] = temp.get(char, 0) + 1
+
+        left = 0 
+
+        for right in range(n , len(s2)):
+            if temp == freq:
+                return True
+            temp[s2[left]] -= 1
+            if temp[s2[left]] == 0:
+                del temp[s2[left]]
+            left += 1
+            temp[s2[right]] = temp.get(s2[right], 0) + 1
+       
+        return temp == freq
