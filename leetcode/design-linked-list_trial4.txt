@@ -1,0 +1,84 @@
+class Node:
+
+    def __init__(self, val, next = None):
+        self.val = val
+        self.next = next
+
+
+class MyLinkedList:
+
+    def __init__(self):
+        self.head = None
+
+    def get(self, index: int) -> int:
+        temp = self.head
+        i = 0
+        while temp and i < index:
+            temp = temp.next
+            i += 1
+        
+        if temp:
+            return temp.val
+        else:
+            return -1
+
+    def addAtHead(self, val: int) -> None:
+        
+        newNode = Node(val,self.head)
+        self.head = newNode
+
+    def addAtTail(self, val: int) -> None:
+        
+        newNode = Node(val, None)
+        temp = self.head
+        if not temp:
+            self.head = newNode
+            return
+        while temp.next:
+            temp = temp.next
+        temp.next = newNode
+
+    def addAtIndex(self, index: int, val: int) -> None:
+        dummy = Node(-1, self.head)
+        newNode = Node(val,None)
+        temp = dummy
+        prev = None
+        i = 0
+        while temp and i < index:
+            temp = temp.next
+            i += 1
+        if temp:
+            if not temp.next:
+                temp.next = newNode
+            else:
+                newNode.next = temp.next
+                temp.next = newNode
+        self.head = dummy.next
+
+
+    def deleteAtIndex(self, index: int) -> None:
+        if index == 0:
+            if self.head:
+                self.head = self.head.next
+            return
+
+        temp = self.head
+        prev = None
+        i = 0 
+        while temp and i < index:
+            prev = temp
+            temp = temp.next
+            i += 1
+        
+        if temp:
+            prev.next = temp.next
+            temp.next = None 
+
+
+# Your MyLinkedList object will be instantiated and called as such:
+# obj = MyLinkedList()
+# param_1 = obj.get(index)
+# obj.addAtself.Head(val)
+# obj.addAtTail(val)
+# obj.addAtIndex(index,val)
+# obj.deleteAtIndex(index)
