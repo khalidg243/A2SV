@@ -1,0 +1,45 @@
+class Solution:
+    def balancedString(self, s: str) -> int:
+        freq = {}
+        target = len(s) / 4
+        total = 0
+        for char in s:
+            freq[char] = freq.get(char, 0) + 1
+
+        del_list = [] 
+        for char in freq:
+            if freq[char] <= target:
+                del_list.append(char)
+            else:
+                freq[char] -= target
+        
+        for ch in del_list:
+            del freq[ch]
+
+        if not freq:
+            return 0
+        
+        need = len(freq)
+        min_seen = len(s)
+        left = 0
+        cnt = 0
+        temp = {}
+
+        for right, char in enumerate(s):
+            if char in freq:
+                temp[char] = temp.get(char, 0) + 1
+                if temp[char] == freq[char]:
+                    cnt += 1
+            
+            while need == cnt and left <= right:
+                min_seen = min(min_seen, (right - left + 1))
+
+                if s[left] in freq:
+                    if temp[s[left]] == freq[s[left]]:
+                            cnt -= 1
+                    temp[s[left]] -= 1    
+                left += 1
+
+        return min_seen
+        
+        
