@@ -1,0 +1,31 @@
+class Solution:
+    def isValid(self, s: str) -> bool:
+        opened = ""
+
+        if len(s)%2 != 0:
+            return False
+
+        for bracet in s:
+            if bracet == '[' or bracet == '{' or bracet == '(':
+                opened += bracet
+            else:
+                if not opened:
+                    return False
+                if bracet == ']':
+                    if opened[-1] == '[':
+                        opened = opened[:-1]
+                    else:
+                        return False
+                elif bracet == ')':
+                    if opened[-1] == '(':
+                        opened = opened[:-1]
+                    else:
+                        return False
+                elif bracet == '}':
+                    if opened[-1] == '{':
+                        opened = opened[:-1]
+                    else:
+                        return False
+
+                
+        return not opened
