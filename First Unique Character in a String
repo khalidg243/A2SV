@@ -1,0 +1,12 @@
+class Solution:
+    def firstUniqChar(self, s: str) -> int:
+        queue = deque()
+        dictionary = {}
+        for i , char in enumerate(s):
+            queue.append([char,i])
+            dictionary[char] = dictionary.get(char,0) + 1
+        while queue:
+            char = queue.popleft()
+            if dictionary[char[0]] == 1:
+                return char[1]
+        return -1
