@@ -1,0 +1,19 @@
+class Solution:
+    def findTheWinner(self, n: int, k: int) -> int:
+        arr=[]
+        for i in range(1 , n + 1):
+            arr.append(i) 
+        
+        def remove_player(starting_index):
+            if len(arr) == 1:
+                return arr[0]
+            pop_index = (starting_index + (k-1)) % len(arr)
+            arr.pop(pop_index)
+            return remove_player(pop_index)
+        
+        
+        return remove_player(0)
+
+
+
+        
