@@ -1,0 +1,24 @@
+class Solution:
+    def canShip(self , weights, cap , days):
+        capacity = cap
+        d = 1
+        for w in weights:
+            if capacity - w < 0 :
+                d += 1
+                capacity = cap
+            capacity -= w
+            
+        return d <= days
+        
+
+    def shipWithinDays(self, weights: List[int], days: int) -> int:
+        l , r = max(weights) , sum(weights)
+        res = r
+        while l <= r:
+            cap = l + ((r-l) // 2)
+            if self.canShip(weights, cap, days):
+                r = cap - 1
+            else:
+                l = cap + 1
+
+        return l
