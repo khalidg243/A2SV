@@ -1,0 +1,33 @@
+class Solution:
+    def findRadius(self, houses: List[int], heaters: List[int]) -> int:
+        heaters.sort()
+        houses.sort()
+
+        def binary_search_left(arr,h):
+            l , r = 0, len(arr)
+            while l < r:
+                mid = l + ((r-l) // 2)
+                if arr[mid] >= h:
+                    r = mid
+                else:
+                    l = mid + 1
+            return l
+        
+        ans = 0 
+
+        for h in houses:
+            i = binary_search_left(heaters, h)
+
+            left_d = float('inf')
+            right_d = float('inf')
+
+            if i > 0: 
+                left_d = h - heaters[i-1]
+            if i < len(heaters):
+                right_d = heaters[i] - h
+            
+            closest = min(left_d, right_d)
+
+            ans = max(ans,closest)
+
+        return ans
